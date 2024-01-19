@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.header_container, .main_container {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.header_container{
+    background-color: slateblue;
+    height: 7%;
+}
+.main_container{
+    background-color: aqua;
+    height: 93%;
+    display: flex;
+    flex-direction: row;
+}
+
+.main_content{
+    background-color: yellow;
+    margin: 0;
+    padding: 0;
+    width: 85%;
+}
+
+.side_bar{
+    background-color: aquamarine;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+}
+
+.stock_content{
+    background-color: chartreuse;
+    margin: 0;
+    padding: 0;
+    width: 85%;
+}
