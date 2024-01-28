@@ -108,8 +108,8 @@ def dashboard():
     session_contents = dict(session)
     user_id = int(session_contents['_user_id'])
     if user_id == 1:
-        return f"Hello, ! Welcome to the dashboard"
-    return "U have no rights bitch get the fck out here"
+        return render_template("admin.html")
+    return render_template("404.html")
 
 @views.route('/')
 @login_required
