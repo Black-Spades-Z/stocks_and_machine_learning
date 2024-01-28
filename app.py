@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from flask import Flask, render_template
 
 from database_management import init_app
@@ -5,6 +7,7 @@ from views import views, init_login
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)
 app.debug = True
 
 

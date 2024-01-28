@@ -23,14 +23,17 @@ def unauthorized():
 
 @views.route('/login',  methods=('GET', 'POST'))
 def loginIn():
+
     if request.method == 'GET':
         return render_template("login.html")
     elif request.method == 'POST':
+
         email = request.form['email']
         password = request.form['password']
         user = load_user(email)
         if user.check_password(password):
             login_user(user)
+            session.permanent = True
             print(f'User {email} logged in successfully')
             return redirect(url_for("views.main_page"))
         else:
@@ -69,6 +72,7 @@ def register():
                         print("Registered and Redirecting")
                         user = load_user(email)
                         login_user(user)
+                        session.permanent = True
                         return redirect(url_for("views.main_page"))
 
             except Exception:
