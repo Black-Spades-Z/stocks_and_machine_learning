@@ -2,15 +2,21 @@ from flask import Blueprint, render_template, request, session, url_for, redirec
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash
 
-from database_management import check_user, register_user, User, get_user_by_id
+from database_management import check_user, register_user, get_user_by_id
 
 views = Blueprint(__name__,'views')
 login_manager = LoginManager()
+
+
+
+
+
 def init_login(app):
     login_manager.init_app(app)
 
 @login_manager.user_loader
 def load_user(user_id):
+
     return get_user_by_id(user_id)
 
 @login_manager.unauthorized_handler
@@ -34,10 +40,13 @@ def loginIn():
         if user.check_password(password):
             login_user(user)
             session.permanent = True
+            print("User id = ", user.id)
             print(f'User {email} logged in successfully')
             return redirect(url_for("views.main_page"))
         else:
-            return 'Invalid Password'
+            flash('Invalid Password')
+            return redirect(url_for("views.loginIn"))
+
 
 
 
@@ -89,12 +98,18 @@ def register():
 @login_required
 def logout():
     logout_user()
-    return 'Logged out successfully'
 
-@views.route('/dashboard')
+    flash('Logged out successfully')
+    return redirect(url_for("views.loginIn"))
+
+@views.route('/admin-dashboard')
 @login_required
 def dashboard():
-    return f'Hello, {current_user.full_name}! Welcome to the dashboard'
+    session_contents = dict(session)
+    user_id = int(session_contents['_user_id'])
+    if user_id == 1:
+        return f"Hello, ! Welcome to the dashboard"
+    return "U have no rights bitch get the fck out here"
 
 @views.route('/')
 @login_required
