@@ -106,8 +106,9 @@ function ready() {
 		.then(data => {
 			message = data['message']
 			if (message === "success"){
-				accessToken = data['access_token']
-				toMainPage(accessToken)
+				localStorage.setItem('accessToken',data['access_token'])
+				localStorage.setItem('refreshToken',data['refresh_token'])
+				toMainPage()
 			}
 			else if (message === "Invalid email or password") {
 				errorAlert(alertElement, message)
@@ -147,44 +148,27 @@ function successAlert(alertElement, message) {
 	}
 }
 
-async function toMainPage(token) {
-	console.log(token)
-	const response = await fetch('/main-page', {
+function toMainPage() {
+	accessToken = localStorage.getItem('accessToken')
+	console.log(accessToken)
+	fetch('/', {
 		method: 'GET',
 		headers: {
-			'Authorization': 'Bearer ' + token
+			'Authorization': `Bearer ${accessToken}`
 		}
+
 	}).then(response => {
-		if (!response.ok) {
-			throw new Error('Network response was not ok');
-		}
+        if (!response.ok) {
+            throw new Error('Unauthorized');
+        }
+		window.location.replace('/main_page');
 
-	})
-}
-
-function xMainPage(token){
-	// Construct XMLHttpRequest object
-        var xhr = new XMLHttpRequest();
-        // Define the request method and URL
-        xhr.open('GET', '/');
-        // Set authorization header
-        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-        // Define the onload event handler
-        xhr.onload = function() {
-            // Check if the request was successful
-            if (xhr.status === 200) {
-                // Redirect to the protected route
-                window.location.href = '/';
-            } else {
-                // Handle error if the request was not successful
-                console.error('Request failed. Status:', xhr.status);
-            }
-        };
-        // Define the onerror event handler
-        xhr.onerror = function() {
-            console.error('Request failed. Network error');
-        };
-        // Send the request
-        xhr.send();
-
+    })
+    .then(data => {
+        // Handle fetched data (e.g., display on the page)
+    })
+    .catch(error => {
+        console.error('Failed to fetch protected data:', error.message);
+        // Handle unauthorized access or other errors
+    });
 }

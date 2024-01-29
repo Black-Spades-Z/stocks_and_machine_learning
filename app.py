@@ -66,11 +66,6 @@ def unauthorized_callback(error):
 
 @app.route('/')
 @jwt_required()
-def index():
-    return redirect(url_for('main_page'))
-
-@app.route('/main-page')
-@jwt_required()
 def main_page():
     print("I am working")
     print(request.path)
