@@ -3,13 +3,13 @@
 
 html,body {
 	position: relative;
-	min-height: 100vh;
+	max-height: 100vh;
+	width: 100%;
 	background-image: url("https://wallpapers.com/images/hd/stock-background-xr0rs3jgkxfn2vp8.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	display: grid;
+	place-items: center;
 	font-family: "Fira Sans", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -20,7 +20,9 @@ html,body {
 	border-radius: 15px;
 	height: 550px;
 	width: 350px;
-	position: relative;
+	position: absolute;
+	top: 20vh;
+	left: 41%;
 	overflow: hidden;
 
 	&::after {
@@ -268,4 +270,33 @@ html,body {
 			-webkit-transition: all .3s ease;
 		}
 	}
+}
+/* The alert message box */
+.alert {
+	display: none;
+	border-radius: 10px;
+	align-self: start;
+	padding: 20px;
+	background-color: lightgreen; /* Green */
+	color: white;
+	margin-top: 15px;
+
+
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
 }
