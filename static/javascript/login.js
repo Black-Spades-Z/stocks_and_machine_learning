@@ -105,8 +105,9 @@ function ready() {
 		})
 		.then(data => {
 			message = data['message']
-			if (message === "User successfully registered"){
-				successAlert(alertElement, message)
+			if (message === "success"){
+				accessToken = data['access_token']
+				toMainPage(accessToken)
 			}
 			else if (message === "Invalid email or password") {
 				errorAlert(alertElement, message)
@@ -144,4 +145,46 @@ function successAlert(alertElement, message) {
 			}
 		}, 2000); // 2000 milliseconds = 2 seconds
 	}
+}
+
+async function toMainPage(token) {
+	console.log(token)
+	const response = await fetch('/main-page', {
+		method: 'GET',
+		headers: {
+			'Authorization': 'Bearer ' + token
+		}
+	}).then(response => {
+		if (!response.ok) {
+			throw new Error('Network response was not ok');
+		}
+
+	})
+}
+
+function xMainPage(token){
+	// Construct XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+        // Define the request method and URL
+        xhr.open('GET', '/');
+        // Set authorization header
+        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+        // Define the onload event handler
+        xhr.onload = function() {
+            // Check if the request was successful
+            if (xhr.status === 200) {
+                // Redirect to the protected route
+                window.location.href = '/';
+            } else {
+                // Handle error if the request was not successful
+                console.error('Request failed. Status:', xhr.status);
+            }
+        };
+        // Define the onerror event handler
+        xhr.onerror = function() {
+            console.error('Request failed. Network error');
+        };
+        // Send the request
+        xhr.send();
+
 }

@@ -66,8 +66,16 @@ def unauthorized_callback(error):
 
 @app.route('/')
 @jwt_required()
+def index():
+    return redirect(url_for('main_page'))
+
+@app.route('/main-page')
+@jwt_required()
 def main_page():
+    print("I am working")
+    print(request.path)
     return render_template("index.html")
+
 
 
 # User Registration Endpoint
@@ -98,15 +106,9 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     elif request.method == 'POST':
-        if request.content_type == 'application/json':
-            data = request.get_json()
-            email = data.get('email')
-            password = data.get('password')
-        elif request.content_type == 'application/x-www-form-urlencoded':
-            email = request.form['email']
-            password = request.form['password']
-        else:
-            return "Unsupported content type", 400
+        data = request.get_json()
+        email = data.get('email')
+        password = data.get('password')
 
         user = User.query.filter_by(email=email).first()
         if not user or not pwd_context.verify(password, user.hashed_password):
@@ -116,7 +118,7 @@ def login():
         access_token = create_access_token(identity=email)
         refresh_token = create_refresh_token(identity=email)
 
-        return jsonify({"access_token": access_token, "refresh_token": refresh_token}), 200
+        return jsonify({"message": "success", "access_token": access_token, "refresh_token": refresh_token}), 200
     return "Not allowed method", 404
 
 
