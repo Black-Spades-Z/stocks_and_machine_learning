@@ -59,6 +59,9 @@ def create_db_and_tables():
         print("Tables created successfully!")
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('401.html'), 404
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -68,8 +71,7 @@ def load_user(user_id):
 @login_manager.unauthorized_handler
 def unauthorized():
     print("Unauthorized User")
-
-    return redirect(url_for('login')), 401
+    return render_template('401.html'), 401
 
 @app.route('/')
 @login_required
@@ -121,7 +123,6 @@ def login():
 
 # Token refresh endpoint
 @app.route('/logout', methods=['GET', 'POST'])
-@login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
