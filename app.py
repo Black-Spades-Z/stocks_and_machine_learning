@@ -1,14 +1,22 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for
+from flask import Flask, request, jsonify, render_template, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from passlib.context import CryptContext
-from flask_jwt_extended import JWTManager, create_access_token, create_refresh_token, jwt_required, get_jwt_identity
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_cors import CORS
 import datetime
 import os
 
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = 'thisisasecretkey'
+app.permanent_session_lifetime = datetime.timedelta(minutes=30)
 CORS(app)  # Initialize CORS with default settings|
+
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 # Database initialization
 
@@ -21,14 +29,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql://{db_user}:{db_password}@{db_ho
 
 
 db = SQLAlchemy(app)
-# JWT configuration
-app.config['JWT_SECRET_KEY'] = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6b78b7a49acae9"  # Change this to a strong secret key
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(minutes=30)
-jwt = JWTManager(app)
 
-
-
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -58,17 +60,20 @@ def create_db_and_tables():
 
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.filter_by(id=user_id).first()
 
 
-@jwt.unauthorized_loader
-def unauthorized_callback(error):
+@login_manager.unauthorized_handler
+def unauthorized():
+    print("Unauthorized User")
+
     return redirect(url_for('login')), 401
 
 @app.route('/')
-@jwt_required()
+@login_required
 def main_page():
-    print("I am working")
-    print(request.path)
     return render_template("index.html")
 
 
@@ -107,24 +112,19 @@ def login():
 
         user = User.query.filter_by(email=email).first()
         if not user or not pwd_context.verify(password, user.hashed_password):
-            return jsonify({"message": "Invalid email or password"})
-
-        # Create access and refresh tokens
-        access_token = create_access_token(identity=email)
-        refresh_token = create_refresh_token(identity=email)
-
-        return jsonify({"message": "success", "access_token": access_token, "refresh_token": refresh_token}), 200
+            return jsonify({"message": "Invalid email or password"}), 401
+        login_user(user)
+        session.permanent = True
+        return redirect(url_for('main_page')), 200
     return "Not allowed method", 404
 
 
 # Token refresh endpoint
-@app.route('/refresh', methods=['POST'])
-@jwt_required(refresh=True)
-def refresh():
-    current_user = get_jwt_identity()
-    access_token = create_access_token(identity=current_user)
-    return jsonify({"access_token": access_token}), 200
-
+@app.route('/logout', methods=['GET', 'POST'])
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 
 

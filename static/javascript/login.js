@@ -99,16 +99,21 @@ function ready() {
 		})
 		.then(response => {
 			if (!response.ok) {
-				throw new Error('Network response was not ok');
+				errorAlert(alertElement,'Network response was not ok');
+			}
+			else if (response.status === 200) {
+				data = {
+					"message" : "success"
+				}
+				window.location.href = '/';
+				return data;
 			}
 			return response.json();
 		})
 		.then(data => {
 			message = data['message']
 			if (message === "success"){
-				localStorage.setItem('accessToken',data['access_token'])
-				localStorage.setItem('refreshToken',data['refresh_token'])
-				toMainPage()
+				successAlert(alertElement, message)
 			}
 			else if (message === "Invalid email or password") {
 				errorAlert(alertElement, message)
