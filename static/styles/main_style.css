@@ -1,0 +1,477 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=josefin+Sans:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    max-width: 100%;
+    min-width: 50%;
+    margin: 0 auto;
+}
+
+.container .nav-bar {
+    display: flex;
+    height: 66px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: #FFFFFF;
+}
+
+.container .nav-bar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 10px;
+}
+
+.container .nav-bar .logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;  
+}
+
+.container .username {
+    display: flex;
+    align-items: center;
+    margin-left: 100px;
+}
+
+.container .search-box {
+    margin: auto;
+    position: relative;
+    width: 350px;
+    height: 42px;
+    border: 3px solid #2980b9;
+    border-radius: 50px;
+}
+
+.container .search-box .element-container {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.container .search-box .element-container .search {
+    border: none;
+    height: 100%;
+    width: 100%;
+    padding: 0px, 5px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-family: "Nunito";
+    color: #424242;
+    font-weight: 500;
+}
+
+.container .search-box .element-container .search:focus {
+    outline: none;
+}
+
+.container .search-box i {
+    font-size: 20px;
+    color: #000;
+}
+
+.container .lang-menu {
+    display: flex;
+    margin: 10px;
+    gap: 10px;
+}
+
+.container .lang-menu button {
+    width: auto;
+    height: 40px;
+}
+
+.container nav {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.container nav .user-profile {
+    display: flex;
+    align-items: center;
+    background: blanchedalmond;
+    width: 144px;
+    height: 45px;
+    border-radius: 16px;
+}
+
+.container nav .user-profile img {
+    display: block;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 60%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.user-profile p {
+    padding-right: 10px;
+}
+
+main {
+    flex: 1;
+    padding-top: 66px;
+    width: 70%;
+}
+
+main header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 60px;
+    padding-top: 10px;
+}
+
+main header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+}
+
+main header h1 {
+    font-size: 22px;
+}
+
+main .stocks {
+    z-index: 1;
+    padding-top: 10px;
+    padding-left: 40px;
+    overflow: auto;
+    height: 100%;
+}
+
+.stocks ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    border: 1.5px solid #000000;
+    padding: 10px;
+}
+
+.stocks .tablequPlaceholder {
+    width: 800px;
+    height: 300px;
+    overflow: auto;
+}
+
+/* something */
+
+.right-side {
+    width: 30%;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 30%;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column;
+        min-width: 100%;
+    }
+
+    .right-side {
+        flex: 1;
+    }
+}
+
+.balance .balance-info {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    gap: 10px;
+}
+
+.balance .balance-info h3 {
+    font-weight: 700;
+}
+
+.card {
+    width: 400px;
+    height: 200px;
+    color: #fff;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+.front, .back {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, #0045c7, #ff2c7d);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 1;
+    backface-visibility: hidden;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.map-img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.chip {
+    height: 40px;
+    width: 60px;
+}
+
+.card-type {
+    width: 60px;
+}
+
+.card-no {
+    font-size: 20px;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.card-holder {
+    font-size: 12px;
+    margin-top: 35px;
+}
+
+.name {
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+.bar {
+    background: #222;
+    margin-left: -30px;
+    margin-right: -30px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.card-cvv {
+    margin-top: 20px;
+}
+
+.card-cvv div {
+    flex: 1;
+}
+
+.card-cvv img {
+    width: 100%;
+    display: block;
+    line-height: 0;
+    height: 36px;
+}
+
+.card-cvv p {
+    background: #fff;
+    color: #000;
+    font-size: 12px;
+    padding: 10px 20px;
+}
+
+.card-text {
+    margin-top: 15px;
+    font-size: 8px;
+}
+
+.signature {
+    margin-top: 20px;
+    font-size: 10px;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+.card:hover .card-inner {
+    transform: rotateY(-180deg);
+}
+
+.cash-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;   
+}
+
+.cash-buttons .withdraw,
+.cash-buttons .deposit {
+    align-items: center;
+    appearance: none;
+    background-color: #3EB2FD;
+    background-image: linear-gradient(1deg, #4F58FD, #149BF3 99%);
+    background-size: calc(100% + 20px) calc(100% + 20px);
+    border-radius: 100px;
+    border-width: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: CircularStd,sans-serif;
+    font-size: 1rem;
+    flex: 0 1 100px;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 6px 20px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s, background-position .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+.withdraw button,
+.deposit button {
+    width: 100px;
+}
+
+.withdraw:active,
+.withdraw:focus {
+    outline: none;
+}
+
+.withdraw:hover {
+    background-position: -20px -20px;
+}
+
+.withdraw:focus:not(:active) {
+    box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+}
+
+.deposit:active,
+.deposit:focus {
+    outline: none;
+}
+
+.deposit:hover {
+    background-position: -20px -20px;
+}
+
+.deposit:focus:not(:active) {
+    box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+}
+
+.cash-buttons .withdraw i, .cash-buttons .deposit i {
+    font-size: 20px;
+}
+
+.separator {
+    margin-top: 10px;
+    padding-top: 2px;
+    text-align: center;
+}
+
+.porfolio {
+    margin-top: 10px;
+}
+
+.porfolio .history {
+    width: 400px;
+    height: 500px;
+    border: 1.5px solid #000;
+    box-sizing: border-box;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.porfolio .history .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.porfolio .history .item i {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.porfolio .history .item:nth-child(1) i {
+    color: red;
+}
+
+.porfolio .history .item:nth-child(2) i {
+    color: green;
+}
+
+.porfolio .history .item:nth-child(3) i {
+    color: black;
+}
+
+.porfolio .history .item .left-side {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.porfolio .history .item .left-side .icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.porfolio .history .item .left-side .icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.porfolio .history .item .left-side .details h5 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.porfolio .history .item .left-side .details p {
+    font-size: 14px;
+}

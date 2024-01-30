@@ -1,10 +1,12 @@
+import json
+
 from flask import Flask, request, jsonify, render_template, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from passlib.context import CryptContext
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_cors import CORS
 import datetime
-import os
+from prediction_model import Stock_performance
 
 
 app = Flask(__name__)
@@ -127,6 +129,27 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+
+@app.route('/plot-test')
+def test():
+    return render_template('plot_test.html')
+
+@app.route('/plot')
+def html():
+
+    stock = Stock_performance()
+    stock.get_data()
+    stock.feed_model()
+    forecasts = stock.plot_model()
+
+
+
+    return forecasts
+# @app.route('/plot')
+# def plotIt():
+#     # Replace this with data generated from your machine learning model
+#     data = {'x': [1, 2, 3, 4, 5], 'y': [10, 15, 13, 18, 16]}
+#     return jsonify(data)
 
 
 with app.app_context():

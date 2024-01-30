@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="style.css">
+        <title>Invest recommendation</title>
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="nav-bar">
+                <div class="logo">
+                    <img src="assets/logo.png">
+                    <h3>Chippi</h3>
+                </div>
+    
+                <div class="username">
+                    <h3 id="hi">Salom, Chippi</h3>
+                </div>
+    
+                <div class="search-box">
+                    <table class="element-container">
+                        <tr>
+                            <td>
+                                <input type="text" placeholder="Qidiruv..." class="search" id="search">
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <i class='bx bx-search-alt' ></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- working on a multi-lang of the page -->
+                <div class="lang-menu">
+                    <button onclick="changeToUz()">O'zbek</button>
+                    <button onclick="changeToRu()">Русский</button>
+                    <button onclick="changeToEng()">English</button>
+                </div>
+                
+                <nav>
+                    <div class="user-profile">
+                        <img src="assets/profile.jpg">
+                        <p>chippi man</p>
+                    </div>
+                </nav>
+    
+            </div>
+            
+            <main>
+                <header>
+                        <img src="assets/stock-price-icon.png">
+                        <h1 id="market_prices">Bozor qiymatlari</h1>
+                </header>
+
+                <div class="stocks">
+
+                    <ul>
+                        <li>
+                            <div class='tableauPlaceholder' id='viz1706204140353' style='position: relative'>
+                                <noscript>
+                                    <a href='#'>
+                                    <img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;AA&#47;AAL_int_stock&#47;Dashboard1&#47;1_rss.png' style='border: none' />
+                                    </a>
+                                </noscript>
+                                <object class='tableauViz' style='display:none;'>
+                                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                                    <param name='embed_code_version' value='3' />
+                                    <param name='site_root' value='' />
+                                    <param name='name' value='AAL_int_stock&#47;Dashboard1' />
+                                    <param name='tabs' value='no' />
+                                    <param name='toolbar' value='yes' />
+                                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;AA&#47;AAL_int_stock&#47;Dashboard1&#47;1.png' />
+                                    <param name='animate_transition' value='yes' />
+                                    <param name='display_static_image' value='yes' />
+                                    <param name='display_spinner' value='yes' />
+                                    <param name='display_overlay' value='yes' />
+                                    <param name='display_count' value='yes' />
+                                    <param name='language' value='en-US' />
+                                </object>
+                            </div>
+                            <script type='text/javascript'>
+                                var divElement = document.getElementById('viz1706204140353');
+                                var vizElement = divElement.getElementsByTagName('object')[0];
+                                if (divElement.offsetWidth > 800) {
+                                    vizElement.style.width = '920px';
+                                    vizElement.style.height = '247px';
+                                } else if (divElement.offsetWidth > 500) {
+                                    vizElement.style.width = '920px';
+                                    vizElement.style.height = '247px';
+                                } else {
+                                    vizElement.style.width = '100%';
+                                    vizElement.style.height = '727px';
+                                }
+                                var scriptElement = document.createElement('script');
+                                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                                vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                            </script>
+                        </li>
+
+                        <li>
+                            <div class='tableauPlaceholder' id='viz1706204140353' style='position: relative'>
+                                <noscript>
+                                <a href='#'>
+                                    <img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;AA&#47;AAL_int_stock&#47;Dashboard1&#47;1_rss.png' style='border: none' />
+                                </a>
+                                </noscript>
+                                <object class='tableauViz' style='display:none;'>
+                                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                                <param name='embed_code_version' value='3' />
+                                <param name='site_root' value='' />
+                                <param name='name' value='AAL_int_stock&#47;Dashboard1' />
+                                <param name='tabs' value='no' />
+                                <param name='toolbar' value='yes' />
+                                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;AA&#47;AAL_int_stock&#47;Dashboard1&#47;1.png' />
+                                <param name='animate_transition' value='yes' />
+                                <param name='display_static_image' value='yes' />
+                                <param name='display_spinner' value='yes' />
+                                <param name='display_overlay' value='yes' />
+                                <param name='display_count' value='yes' />
+                                <param name='language' value='en-US' />
+                                </object>
+                            </div>
+                            <script type='text/javascript'>
+                                var divElement = document.getElementById('viz1706204140353');
+                                var vizElement = divElement.getElementsByTagName('object')[0];
+                                if (divElement.offsetWidth > 800) {
+                                vizElement.style.width = '920px';
+                                vizElement.style.height = '247px';
+                                } else if (divElement.offsetWidth > 500) {
+                                vizElement.style.width = '920px';
+                                vizElement.style.height = '247px';
+                                } else {
+                                vizElement.style.width = '100%';
+                                vizElement.style.height = '727px';
+                                }
+                                var scriptElement = document.createElement('script');
+                                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                                vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                            </script>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </main>
+
+            <aside class="right-side">
+                <div class="balance">
+                    <div class="balance-info">
+                        <h3 id="my_balance">Mening hisobim</h3>
+                        <a onclick="changeIcon(this)" id="myBtn">
+                            <i id="faPlus" class='bx bx-show'></i>
+                            <span class="SPN" data-text="Balans: $56,756.00">Balans: $56,756.00</span>
+                        </a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="front">
+                                <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                                <div class="row">
+                                    <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
+                                    <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="card-type">
+                                </div>
+                                <div class="row card-no">
+                                    <p>5244</p>
+                                    <p>2150</p>
+                                    <p>8252</p>
+                                    <p>6420</p>
+                                </div>
+                                <div class="row card-holder">
+                                    <p>CARD HOLDER</p>
+                                    <p>VALID TILL</p>
+                                </div>
+                                <div class="row name">
+                                    <p>chippi man</p>
+                                    <p>10 / 25</p>
+                                </div>
+                            </div>
+                            <div class="back">
+                                <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                                <div class="bar"></div>
+                                <div class="row card-cvv">
+                                    <div>
+                                        <img src="https://i.ibb.co/S6JG8px/pattern.png">
+                                    </div>
+                                    <p>824</p>
+                                </div>
+                                <div class="row card-text">
+                                    <p>this is a virtual card design using HTML and CSS. You can aslo design something like this.</p>
+                                </div>
+                                <div class="row signature">
+                                    <p>CUSTOMER SIGNATURE</p>
+                                    <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cash-buttons">
+                    <div class="withdraw">
+                        <button class="withdraw">
+                            <i class='bx bx-chevron-up-circle'></i>
+                            <h4 id="withdraw">Yechib olish</h4>
+                        </button>
+                    </div>
+
+                    <div class="deposit">
+                        <button class="deposit">
+                            <i class='bx bx-chevron-down-circle'></i>
+                            <h4 id="deposit">Deposit</h4>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="separator">
+                    <h3 id="my_portfolio">Mening portfoliom</h3>
+                </div>
+
+                <div class="porfolio">
+                    <div class="history">
+                        <div class="item">
+                            <div class="left-side">
+                                <div class="icon">
+                                    <img src="assets/tesla.png">
+                                </div>
+
+                                <div class="details">
+                                    <h5>Tesla, Inc.</h5>
+                                    <p>$181.91</p>
+                                </div>
+                            </div>
+                            <i class='bx bx-trending-down'></i>
+                        </div>
+
+                        <div class="item">
+                            <div class="left-side">
+                                <div class="icon">
+                                    <img src="assets/microsoft.png">
+                                </div>
+
+                                <div class="details">
+                                    <h5>Microsoft Inc.</h5>
+                                    <p>$402.92</p>
+                                </div>
+                            </div>
+                            <i class='bx bx-trending-up'></i>
+                        </div>
+
+                        <div class="item">
+                            <div class="left-side">
+                                <div class="icon">
+                                    <img src="assets/nasa.png">
+                                </div>
+
+                                <div class="details">
+                                    <h5>NASA</h5>
+                                    <p>NaN</p>
+                                </div>
+                            </div>
+                            <i class='bx bx-x'></i>
+                        </div>
+
+                    </div>
+                </div>
+
+            </aside>
+
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
