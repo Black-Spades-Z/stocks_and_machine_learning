@@ -37,7 +37,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), unique=True, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
     full_name = db.Column(db.String(255), nullable=False)
+    balance = db.Column(db.Integer, default=0)
     is_admin = db.Column(db.Boolean, default=False)
+
 
 
     def __repr__(self):
@@ -84,7 +86,7 @@ def unauthorized():
 @login_required
 def main_page():
 
-    return render_template("index.html")
+    return render_template("main_page.html")
 
 
 
@@ -98,6 +100,7 @@ def register():
     surname = data.get('surname')
     password = data.get('password')
     full_name = name + " " + surname
+
 
     existing_user = User.query.filter_by(email=email).first()
 
@@ -136,10 +139,6 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route('/test')
-def test():
-    return render_template('plot_test.html')
-
 
 @app.route('/get-forecast')
 def get_forecast():
@@ -157,11 +156,7 @@ def get_forecast():
 
     response["length"] = Forecasts.query.count()
     json_response = json.dumps(response, indent=2)
-  #  json_response = json_response.replace("\\", "")
-   # json_response = json_response.replace("\'", "\"")
 
-    print(json_response[5:10])
-    print(json_response[-1])
     return json_response
 
 @app.route('/get-train')

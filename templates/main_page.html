@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../static/styles/main_style.css">
+         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <title>Invest recommendation</title>
     </head>
     <body>
@@ -12,7 +13,7 @@
 
             <div class="nav-bar">
                 <div class="logo">
-                    <img src="assets/logo.png">
+                    <img src="../static/images/assets/logo.png">
                     <h3>Chippi</h3>
                 </div>
     
@@ -44,7 +45,7 @@
                 
                 <nav>
                     <div class="user-profile">
-                        <img src="assets/profile.jpg">
+                        <img src="../static/images/assets/profile.jpg">
                         <p>chippi man</p>
                     </div>
                 </nav>
@@ -53,96 +54,13 @@
             
             <main>
                 <header>
-                        <img src="assets/stock-price-icon.png">
+                        <img src="../static/images/assets/stock-price-icon.png">
                         <h1 id="market_prices">Bozor qiymatlari</h1>
                 </header>
 
                 <div class="stocks">
 
-                    <ul>
-                        <li>
-                            <div class='tableauPlaceholder' id='viz1706204140353' style='position: relative'>
-                                <noscript>
-                                    <a href='#'>
-                                    <img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;AA&#47;AAL_int_stock&#47;Dashboard1&#47;1_rss.png' style='border: none' />
-                                    </a>
-                                </noscript>
-                                <object class='tableauViz' style='display:none;'>
-                                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                                    <param name='embed_code_version' value='3' />
-                                    <param name='site_root' value='' />
-                                    <param name='name' value='AAL_int_stock&#47;Dashboard1' />
-                                    <param name='tabs' value='no' />
-                                    <param name='toolbar' value='yes' />
-                                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;AA&#47;AAL_int_stock&#47;Dashboard1&#47;1.png' />
-                                    <param name='animate_transition' value='yes' />
-                                    <param name='display_static_image' value='yes' />
-                                    <param name='display_spinner' value='yes' />
-                                    <param name='display_overlay' value='yes' />
-                                    <param name='display_count' value='yes' />
-                                    <param name='language' value='en-US' />
-                                </object>
-                            </div>
-                            <script type='text/javascript'>
-                                var divElement = document.getElementById('viz1706204140353');
-                                var vizElement = divElement.getElementsByTagName('object')[0];
-                                if (divElement.offsetWidth > 800) {
-                                    vizElement.style.width = '920px';
-                                    vizElement.style.height = '247px';
-                                } else if (divElement.offsetWidth > 500) {
-                                    vizElement.style.width = '920px';
-                                    vizElement.style.height = '247px';
-                                } else {
-                                    vizElement.style.width = '100%';
-                                    vizElement.style.height = '727px';
-                                }
-                                var scriptElement = document.createElement('script');
-                                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-                                vizElement.parentNode.insertBefore(scriptElement, vizElement);
-                            </script>
-                        </li>
-
-                        <li>
-                            <div class='tableauPlaceholder' id='viz1706204140353' style='position: relative'>
-                                <noscript>
-                                <a href='#'>
-                                    <img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;AA&#47;AAL_int_stock&#47;Dashboard1&#47;1_rss.png' style='border: none' />
-                                </a>
-                                </noscript>
-                                <object class='tableauViz' style='display:none;'>
-                                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                                <param name='embed_code_version' value='3' />
-                                <param name='site_root' value='' />
-                                <param name='name' value='AAL_int_stock&#47;Dashboard1' />
-                                <param name='tabs' value='no' />
-                                <param name='toolbar' value='yes' />
-                                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;AA&#47;AAL_int_stock&#47;Dashboard1&#47;1.png' />
-                                <param name='animate_transition' value='yes' />
-                                <param name='display_static_image' value='yes' />
-                                <param name='display_spinner' value='yes' />
-                                <param name='display_overlay' value='yes' />
-                                <param name='display_count' value='yes' />
-                                <param name='language' value='en-US' />
-                                </object>
-                            </div>
-                            <script type='text/javascript'>
-                                var divElement = document.getElementById('viz1706204140353');
-                                var vizElement = divElement.getElementsByTagName('object')[0];
-                                if (divElement.offsetWidth > 800) {
-                                vizElement.style.width = '920px';
-                                vizElement.style.height = '247px';
-                                } else if (divElement.offsetWidth > 500) {
-                                vizElement.style.width = '920px';
-                                vizElement.style.height = '247px';
-                                } else {
-                                vizElement.style.width = '100%';
-                                vizElement.style.height = '727px';
-                                }
-                                var scriptElement = document.createElement('script');
-                                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-                                vizElement.parentNode.insertBefore(scriptElement, vizElement);
-                            </script>
-                        </li>
+                    <ul id="one_ul">
 
                     </ul>
 
@@ -229,7 +147,7 @@
                         <div class="item">
                             <div class="left-side">
                                 <div class="icon">
-                                    <img src="assets/tesla.png">
+                                    <img src="../static/images/assets/tesla.png">
                                 </div>
 
                                 <div class="details">
@@ -243,7 +161,7 @@
                         <div class="item">
                             <div class="left-side">
                                 <div class="icon">
-                                    <img src="assets/microsoft.png">
+                                    <img src="../static/images/assets/microsoft.png">
                                 </div>
 
                                 <div class="details">
@@ -257,7 +175,7 @@
                         <div class="item">
                             <div class="left-side">
                                 <div class="icon">
-                                    <img src="assets/nasa.png">
+                                    <img src="../static/images/assets/nasa.png">
                                 </div>
 
                                 <div class="details">
@@ -275,6 +193,138 @@
 
         </div>
 
-        <script src="script.js"></script>
+           <script>
+        function isValidJSON(str) {
+            try {
+                JSON.parse(str);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+            // Function to fetch data from backend and update plot
+            function fetchDataAndUpdatePlot() {
+                fetch('/get-forecast')
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        console.log(data[1]);
+
+
+                        for (let i = 0; i < data.length; i++) {
+                            innerJson = JSON.parse(data[i + 1]);
+                            var df = innerJson['df'];
+                            console.log(df);
+                            const jsonArray = JSON.parse(df);
+
+                            // Initialize arrays to store x and y values
+                            const date = [];
+                            const yHat = [];
+
+                            // Extract data for plotting
+                            jsonArray.forEach(entry => {
+                                // Extract x-value (timestamp) and convert it to a Date object
+                                const timestamp = new Date(entry.ds);
+                                date.push(timestamp);
+
+                                // Extract y-values (e.g., yhat, yhat_lower, yhat_upper, etc.)
+                                // Change 'yhat' to the property you want to plot
+                                const yValue = entry.yhat;
+                                yHat.push(yValue);
+                            });
+
+                            // Now, you can use xValues and yValues for plotting
+                            console.log('X values:', date);
+                            console.log('Y values:', yHat);
+                            percentage = 0.8 * date.length;
+                            const trace1 = {
+                                x: date.slice(0, percentage),
+                                y: yHat.slice(0, percentage),
+                                name: "actual data",
+                                type: 'scatter',
+                                mode: 'lines+markers',
+                                marker: {color: 'blue'},
+                                line: {width: 1}
+                            };
+                            const trace2 = {
+                                x: date.slice(percentage),
+                                y: yHat.slice(percentage),
+                                name : "future data",
+                                type: 'scatter',
+                                mode: 'lines+markers',
+                                marker: {color: 'green'},
+                                line: {width: 1}
+                            };
+
+                            const traces = [trace1, trace2]
+
+                            const layout = {
+                                title: innerJson['stock_name'],
+                                xaxis: {title: 'Date'},
+                                yaxis: {title: 'Price'},
+                                showlegend: true,
+                                annotations: [{
+                                xref: 'paper',
+                                yref: 'paper',
+                                x: 1,
+                                xanchor: 'left',
+                                y: 0.7,
+                                yanchor: 'bottom',
+                                text: "Rate : " + (i + 1) ,
+                                showarrow: false
+                              },
+                                {
+                                xref: 'paper',
+                                yref: 'paper',
+                                x: 1,
+                                xanchor: 'left',
+                                y: 0.65,
+                                yanchor: 'bottom',
+                                text: "Accuracy : " + innerJson['accuracy'] ,
+                                showarrow: false
+                              },
+                                 {
+                                xref: 'paper',
+                                yref: 'paper',
+                                x: 1,
+                                xanchor: 'left',
+                                y: 0.6,
+                                yanchor: 'bottom',
+                                text: "Price : " +"$"+ innerJson['price'],
+                                showarrow: false
+                              }]
+
+
+                            };
+
+                            // Create a new div element for each plot
+                            const div = document.createElement('div');
+                            div.id = `plot_${i}`;  // Assign unique IDs to each div
+                            div.className = 'charts_main_page';
+                            div.style.width = '1200px';  // Set custom width
+                            div.style.height = '500px';
+
+                            const li = document.createElement('li')
+                            ul_one = document.getElementById('one_ul');
+                            li.appendChild(div);
+                            ul_one.appendChild(li);
+
+                            // Append the div to the body or another container
+
+                            // Plot the data in the new div
+                            Plotly.newPlot(div.id, traces, layout);
+                            console.log('Working')
+                        }
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+
+        }
+
+            // Call the function to fetch data and update plot on page load
+            window.onload = fetchDataAndUpdatePlot;
+
+    </script>
+        <script src="../static/javascript/main_script.js"></script>
     </body>
 </html>

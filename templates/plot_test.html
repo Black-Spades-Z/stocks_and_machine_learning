@@ -54,15 +54,26 @@
                             // Now, you can use xValues and yValues for plotting
                             console.log('X values:', date);
                             console.log('Y values:', yHat);
-
-                            const trace = {
-                                x: date,
-                                y: yHat,
+                            percentage = 0.8 * date.length;
+                            const trace1 = {
+                                x: date.slice(0, percentage),
+                                y: yHat.slice(0, percentage),
+                                name: "actual data",
                                 type: 'scatter',
                                 mode: 'lines+markers',
                                 marker: {color: 'blue'},
-                                line: {width: 2}
+                                line: {width: 1}
                             };
+                            const trace2 = {
+                                x: date.slice(percentage),
+                                y: yHat.slice(percentage),
+                                name : "future data",
+                                type: 'scatter',
+                                mode: 'lines+markers',
+                                marker: {color: 'green'},
+                                line: {width: 1}
+                            };
+                            const traces = [trace1, trace2]
 
                             const layout = {
                                 title: data[i + 1]['stock_name'],
@@ -73,11 +84,12 @@
                             const div = document.createElement('div');
                             div.id = `plot_${i}`;  // Assign unique IDs to each div
                             div.className = 'charts_main_page';
-
+                            div.style.width = '600px';  // Set custom width
+                            div.style.height = '400px';
                             document.body.appendChild(div);  // Append the div to the body or another container
 
                             // Plot the data in the new div
-                            Plotly.newPlot(div.id, [trace], layout);
+                            Plotly.newPlot(div.id, traces, layout);
                             console.log('Working')
                         }
                     })
