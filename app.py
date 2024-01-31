@@ -42,6 +42,11 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f'<User : {self.email} >'
+class Forecasts(db.Model):
+    status_id = db.Column(db.Integer, primary_key=True)
+    stock_data = db.Column(db.Text(2000000), nullable=False)
+
+
 
 
 
@@ -63,7 +68,7 @@ def create_db_and_tables():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('401.html'), 404
+    return render_template('404.html'), 404
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -145,11 +150,6 @@ def html():
 
 
     return forecasts
-# @app.route('/plot')
-# def plotIt():
-#     # Replace this with data generated from your machine learning model
-#     data = {'x': [1, 2, 3, 4, 5], 'y': [10, 15, 13, 18, 16]}
-#     return jsonify(data)
 
 
 with app.app_context():
