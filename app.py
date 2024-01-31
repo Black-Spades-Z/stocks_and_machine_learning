@@ -83,6 +83,7 @@ def unauthorized():
 @app.route('/')
 @login_required
 def main_page():
+
     return render_template("index.html")
 
 
@@ -135,21 +136,56 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route('/plot-test')
+@app.route('/test')
 def test():
     return render_template('plot_test.html')
 
-@app.route('/plot')
-def html():
 
-    stock = Stock_performance()
-    stock.get_data()
-    stock.feed_model()
-    forecasts = stock.plot_model()
+@app.route('/get-forecast')
+def get_forecast():
 
+    response = {}
 
+    length = Forecasts.query.filter_by(status_id=0).first()
 
-    return forecasts
+    for index in range(1, length+1):
+
+        item = Forecasts.query.filter_by(status_id=index).first()
+        response[index] = item
+
+    return jsonify(response)
+
+@app.route('/get-train')
+@login_required
+def get_train():
+
+    user = current_user
+
+    if (user.is_admin):
+
+        print("Admin User Start")
+
+        stock = Stock_performance()
+        stock.get_data()
+        stock.feed_model()
+        forecasts = stock.plot_model()
+        data = json.loads(forecasts)
+        length = int(data['length'])
+        try:
+            db.session.query(Forecasts).delete()
+            db.session.commit()
+
+            for index in range(1, length+1):
+                stocks = Forecasts(status_id=index, stock_data=data[f"{index}"])
+                db.session.add(stocks)
+            db.session.commit()
+
+            return jsonify({"message": "success"})
+        except Exception as e:
+            return jsonify({"message": e})
+    else:
+        return 401
+
 
 
 with app.app_context():

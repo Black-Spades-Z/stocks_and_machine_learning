@@ -14,7 +14,7 @@
 
         // Function to fetch data from backend and update plot
         function fetchDataAndUpdatePlot() {
-            fetch('/plot')
+            fetch('/get-forecast')
             .then(response => response.json())
             .then(data => {
                 console.log(data);
