@@ -2,6 +2,9 @@
 
 The Stock Recommendation System is a web-based application that provides personalized stock recommendations based on user balance and market analysis.
 
+![ggfcc3d2a312](https://github.com/Black-Spades-Z/stocks_and_machine_learning/assets/98017802/720d9bed-768d-4d90-9d9f-8174861b66c0)
+
+
 
 ## Table of Contents
 
@@ -29,6 +32,9 @@ Main features of Stock Recommendation System:
 - Feature 6: Increase of stockholders in the country
 
 ## Demo
+
+![ggfcc3d2a312](https://github.com/Black-Spades-Z/stocks_and_machine_learning/assets/98017802/c25d5d61-6f53-45a6-8291-dac29074e950)
+
 
 ## Usage
 
