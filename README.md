@@ -1,5 +1,9 @@
 # Stock Recommendation System
 
+I have to note that, this project is one step away from Deplyoing to Server and being fully functional.
+The obstacle for us is that we are waiting for confirmation of Student Pack from Heroku.
+As soon as we get the Credit from Heroku we deploy it immediately.
+
 The Stock Recommendation System is a web-based application that provides personalized stock recommendations based on user balance and market analysis.
 
 ![ggfcc3d2a312](https://github.com/Black-Spades-Z/stocks_and_machine_learning/assets/98017802/720d9bed-768d-4d90-9d9f-8174861b66c0)
