@@ -11,73 +11,135 @@
     <h1>Data Visualization</h1>
     <div id="plot"></div>
     <script>
-
-        // Function to fetch data from backend and update plot
-        function fetchDataAndUpdatePlot() {
-            fetch('/get-forecast')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                console.log(data[1]);
-                console.log(data[1]['df']);
-
-                for (let i = 0; i < data.length; i++) {
-
-                    var df = data[i+1]['df'];
-                    console.log(df);
-                    const jsonArray = JSON.parse(df);
-
-                    // Initialize arrays to store x and y values
-                    const date = [];
-                    const yHat = [];
-
-                    // Extract data for plotting
-                    jsonArray.forEach(entry => {
-                        // Extract x-value (timestamp) and convert it to a Date object
-                        const timestamp = new Date(entry.ds);
-                        date.push(timestamp);
-
-                        // Extract y-values (e.g., yhat, yhat_lower, yhat_upper, etc.)
-                        // Change 'yhat' to the property you want to plot
-                        const yValue = entry.yhat;
-                        yHat.push(yValue);
-                    });
-
-                    // Now, you can use xValues and yValues for plotting
-                    console.log('X values:', date);
-                    console.log('Y values:', yHat);
-
-                    const trace = {
-                        x: date,
-                        y: yHat,
-                        type: 'scatter',
-                        mode: 'lines+markers',
-                        marker: {color: 'blue'},
-                        line: {width: 2}
-                    };
-
-                    const layout = {
-                        title: data[i+1]['stock_name'],
-                        xaxis: {title: 'Date'},
-                        yaxis: {title: 'Price'}
-                    };
-                    // Create a new div element for each plot
-                    const div = document.createElement('div');
-                    div.id = `plot_${i}`;  // Assign unique IDs to each div
-                    div.className = 'charts_main_page';
-
-                    document.body.appendChild(div);  // Append the div to the body or another container
-
-                    // Plot the data in the new div
-                    Plotly.newPlot(div.id, [trace], layout);
-                    console.log('Working')
+        function isValidJSON(str) {
+            try {
+                JSON.parse(str);
+                return true;
+            } catch (e) {
+                return false;
             }
-            })
-            .catch(error => console.error('Error fetching data:', error));
         }
 
-        // Call the function to fetch data and update plot on page load
-        window.onload = fetchDataAndUpdatePlot;
+            // Function to fetch data from backend and update plot
+            function fetchDataAndUpdatePlot() {
+                fetch('/get-forecast')
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        console.log(data[1]);
+
+
+                        for (let i = 0; i < data.length; i++) {
+                            innerJson = JSON.parse(data[i + 1]);
+                            var df = innerJson['df'];
+                            console.log(df);
+                            const jsonArray = JSON.parse(df);
+
+                            // Initialize arrays to store x and y values
+                            const date = [];
+                            const yHat = [];
+
+                            // Extract data for plotting
+                            jsonArray.forEach(entry => {
+                                // Extract x-value (timestamp) and convert it to a Date object
+                                const timestamp = new Date(entry.ds);
+                                date.push(timestamp);
+
+                                // Extract y-values (e.g., yhat, yhat_lower, yhat_upper, etc.)
+                                // Change 'yhat' to the property you want to plot
+                                const yValue = entry.yhat;
+                                yHat.push(yValue);
+                            });
+
+                            // Now, you can use xValues and yValues for plotting
+                            console.log('X values:', date);
+                            console.log('Y values:', yHat);
+
+                            const trace = {
+                                x: date,
+                                y: yHat,
+                                type: 'scatter',
+                                mode: 'lines+markers',
+                                marker: {color: 'blue'},
+                                line: {width: 2}
+                            };
+
+                            const layout = {
+                                title: data[i + 1]['stock_name'],
+                                xaxis: {title: 'Date'},
+                                yaxis: {title: 'Price'}
+                            };
+                            // Create a new div element for each plot
+                            const div = document.createElement('div');
+                            div.id = `plot_${i}`;  // Assign unique IDs to each div
+                            div.className = 'charts_main_page';
+
+                            document.body.appendChild(div);  // Append the div to the body or another container
+
+                            // Plot the data in the new div
+                            Plotly.newPlot(div.id, [trace], layout);
+                            console.log('Working')
+                        }
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+
+        }
+                // Helper function to split data into two segments based on a certain date
+        function splitDataByDate(data, date) {
+            const dataBeforeDate = data.filter(entry => entry.x <= date);
+            const dataAfterDate = data.filter(entry => entry.x > date);
+            return [dataBeforeDate, dataAfterDate];
+        }
+
+        // Helper function to plot data with different colors
+        function plotData(dataBeforeDate, dataAfterDate) {
+            // Create a new div element for the plot
+            const div = document.createElement('div');
+            div.style.width = '600px';  // Set custom width
+            div.style.height = '400px';  // Set custom height
+            document.body.appendChild(div);  // Append the div to the body or another container
+
+            // Create traces for data before and after the date
+            const traceBeforeDate = {
+                x: dataBeforeDate.map(entry => entry.x),
+                y: dataBeforeDate.map(entry => entry.y),
+                type: 'scatter',
+                mode: 'lines+markers',
+                marker: {color: 'blue'},
+                line: {width: 2},
+                name: 'Before Date' // Legend label
+            };
+
+            const traceAfterDate = {
+                x: dataAfterDate.map(entry => entry.x),
+                y: dataAfterDate.map(entry => entry.y),
+                type: 'scatter',
+                mode: 'lines+markers',
+                marker: {color: 'green'},
+                line: {width: 2},
+                name: 'After Date' // Legend label
+            };
+
+            // Combine traces into an array
+            const traces = [traceBeforeDate, traceAfterDate];
+
+            // Create a custom layout for the plot
+            const layout = {
+                title: 'Line Graph with Two Colors',
+                xaxis: {title: 'X-axis'},
+                yaxis: {title: 'Y-axis'},
+                width: 600,  // Set custom width
+                height: 400,  // Set custom height
+                margin: {l: 50, r: 50, t: 50, b: 50},  // Set custom margin
+                showlegend: true // Show legend
+            };
+
+            // Plot the data in the div
+            Plotly.newPlot(div, traces, layout);
+        }
+            // Call the function to fetch data and update plot on page load
+            window.onload = fetchDataAndUpdatePlot;
+
     </script>
 </body>
 </html>

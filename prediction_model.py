@@ -75,14 +75,14 @@ class Stock_performance:
             future2 = future2[future2['ds'].dt.weekday < 6]
             forecast = self.models[stock_name].predict(future2)
             df = pd.DataFrame(forecast)
-            item['stock_name'] = stock_name
-            item['accuracy'] =  self.model_accuracy[stock_name]
-            item['price'] = self.stocks[stock_name]['Close'].tail(1)[0]
-            item['df'] = df.to_json(orient='records')
+            item["stock_name"] = stock_name
+            item["accuracy"] =  self.model_accuracy[stock_name]
+            item["price"] = self.stocks[stock_name]['Close'].tail(1)[0]
+            item["df"] = df.to_json(orient='records')
             index = num + 1
             response[index] = item
 
-        response['length'] = index
+        response["length"] = index
         json_response = json.dumps(response, indent=2)
         return json_response
 

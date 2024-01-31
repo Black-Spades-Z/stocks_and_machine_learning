@@ -146,14 +146,23 @@ def get_forecast():
 
     response = {}
 
-    length = Forecasts.query.filter_by(status_id=0).first()
+    length = Forecasts.query.count()
+
 
     for index in range(1, length+1):
 
         item = Forecasts.query.filter_by(status_id=index).first()
-        response[index] = item
 
-    return jsonify(response)
+        response[index] = item.stock_data
+
+    response["length"] = Forecasts.query.count()
+    json_response = json.dumps(response, indent=2)
+  #  json_response = json_response.replace("\\", "")
+   # json_response = json_response.replace("\'", "\"")
+
+    print(json_response[5:10])
+    print(json_response[-1])
+    return json_response
 
 @app.route('/get-train')
 @login_required
@@ -176,7 +185,10 @@ def get_train():
             db.session.commit()
 
             for index in range(1, length+1):
-                stocks = Forecasts(status_id=index, stock_data=data[f"{index}"])
+
+                json_data = json.dumps(data[f"{index}"])
+
+                stocks = Forecasts(status_id=index, stock_data=json_data)
                 db.session.add(stocks)
             db.session.commit()
 
