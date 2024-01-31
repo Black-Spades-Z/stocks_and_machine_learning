@@ -1,51 +1,53 @@
 # Stock Recommendation System
 
-The Stock Recommendation System is a web-based application that provides personalized stock recommendations based on user preferences and market analysis.
+The Stock Recommendation System is a web-based application that provides personalized stock recommendations based on user balance and market analysis.
 
-![Stock Recommendation System Demo](demo.gif)
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Features](#features)
 - [Demo](#demo)
-- [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## Introduction
 
-Briefly introduce your project, explaining its purpose and key functionalities. Describe what makes your stock recommendation system unique and valuable for users.
+Limited stock integration in traditional banking apps - project addresses this gap by introducing a sophisticated integration of stocks within the banking app, offering users a holistic financial experience and empowering them to make informed investment decisions.
+Rising demand for integrated banking and stock platforms - 
 
 ## Features
 
-List the main features of your Stock Recommendation System:
+Main features of Stock Recommendation System:
 
 - Feature 1: Personalized stock recommendations based on user preferences
 - Feature 2: Real-time market analysis and data visualization
 - Feature 3: User-friendly interface for easy interaction
-- ...
+- Feature 4: Easy access to stock market
+- Feature 5: No need to analyze stock graphs
+- Feature 6: Increase of stockholders in the country
 
 ## Demo
 
-Include a GIF or video demonstrating the usage of your Stock Recommendation System. This helps users understand how the application works and what they can expect.
+## Usage
 
-![Demo](demo.gif)
+1. Visit the deployed application URL.
+2. Sign up or log in to access personalized recommendations.
+3. Set your preferences such as risk tolerance, investment goals, etc.
+4. Explore recommended stocks and related market insights.
+5. Make informed investment decisions based on the provided data.
 
-## Installation
 
-Provide instructions on how to install and deploy your Stock Recommendation System, assuming it's deployed to Heroku. Include any prerequisites and configuration steps.
 
-```bash
-# Clone the repository
-git clone https://github.com/username/stock-recommendation-system.git
+## Contributing
 
-# Navigate to the project directory
-cd stock-recommendation-system
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature`)
+3. Make changes and commit them (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature`)
+5. Create a pull request
 
-# Install dependencies
-npm install
+## Licence 
 
-# Start the server
-npm start
+This is open source project for now. :)
